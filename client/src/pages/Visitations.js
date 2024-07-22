@@ -2,13 +2,15 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import '../styles/Visitations.css'
+import "../styles/Visitations.css";
 
 const Visitations = () => {
   const [visitations, setVisitations] = useState([]);
   const [visitorName, setVisitorName] = useState("");
   const [relation, setRelation] = useState("");
   const [approvalStatus, setApprovalStatus] = useState("");
+  const [successMessage, setSuccessMessage] = useState(""); // State for success message
+  const [errorMessage, setErrorMessage] = useState(""); // State for error message
   const { user } = useContext(AuthContext);
   const navigate = useNavigate(); // Initialize useNavigate
 
@@ -21,10 +23,7 @@ const Visitations = () => {
           },
         };
         try {
-          const { data } = await axios.get(
-            `/api/visitations`,
-            config
-          );
+          const { data } = await axios.get(`/api/visitations`, config);
           setVisitations(data);
         } catch (error) {
           console.error("Error fetching visitations:", error);
@@ -53,8 +52,11 @@ const Visitations = () => {
         setVisitorName("");
         setRelation("");
         setApprovalStatus("");
+        setSuccessMessage("Visitation added successfully!"); // Set success message
+        setErrorMessage(""); // Clear error message
       } catch (error) {
-        console.error("Error adding visitation:", error);
+        setErrorMessage("Error adding visitation. Please try again."); // Set error message
+        setSuccessMessage(""); // Clear success message
       }
     }
   };
@@ -75,7 +77,7 @@ const Visitations = () => {
         />
         <input
           type="text"
-          placeholder="Priosoner ID and Relation"
+          placeholder="Prisoner ID and Relation"
           value={relation}
           onChange={(e) => setRelation(e.target.value)}
         />
@@ -85,14 +87,13 @@ const Visitations = () => {
           value={approvalStatus}
           onChange={(e) => setApprovalStatus(e.target.value)}
         />
-        <button  type="submit">
-          Add Visitation
-        </button>
+        <button type="submit">Add Visitation</button>
       </form>
-      <button  onClick={viewVisitations}>
-        Visitations List
-      </button>{" "}
-      {/* New button */}
+      {successMessage && <p className="success-message">{successMessage}</p>}{" "}
+      {/* Display success message */}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}{" "}
+      {/* Display error message */}
+      <button onClick={viewVisitations}>Visitations List</button>{" "}
     </div>
   );
 };
