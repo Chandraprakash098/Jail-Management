@@ -1,0 +1,121 @@
+/* Header.css */
+
+.header {
+    background-color: #283e51;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.brand {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #fff;
+    background-color: #3498db;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    background-clip: padding-box;
+    padding: 5px 15px;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.nav-link:hover {
+    text-shadow: 0 0 5px rgba(26, 188, 156, 0.5);
+}
+
+.nav-link.active {
+    background-color: #3498db;
+    color: #fff;
+    border: 2px solid #2980b9;
+}
+
+.nav-button {
+    background-color: #e74c3c;
+    color: #ecf0f1;
+    border: 2px solid #c0392b;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+}
+
+.nav-button.active {
+    background-color: #3498db;
+    color: #fff;
+    border: 2px solid #2980b9;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: #283e51;
+        margin-top: 10px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-link,
+    .nav-button {
+        margin: 10px 0;
+    }
+
+    .navbar-brand {
+        justify-content: space-between;
+    }
+}
