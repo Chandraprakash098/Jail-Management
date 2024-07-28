@@ -35,7 +35,7 @@ const Home = () => {
           className="logo"
         />
         <Heading as="h1" size="2xl" className="home-heading">
-          Welcome to the Jail Management System
+          Welcome to the Detention Center Management System
         </Heading>
         <Text fontSize="lg" className="home-text" px={4}>
           Efficiently manage prisoners, visitation schedules, and incidents with
