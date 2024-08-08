@@ -39,7 +39,7 @@ const Home = () => {
         </Heading>
         <Text fontSize="lg" className="home-text" px={4}>
           Efficiently manage prisoners, visitation schedules, and incidents with
-          our comprehensive jail management system.
+          our comprehensive Detention management system.
         </Text>
 
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} mt={10}>
