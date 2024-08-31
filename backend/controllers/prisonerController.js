@@ -71,9 +71,27 @@ const updatePrisoner = async (req, res) => {
   }
 };
 
+const deletePrisoner = async (req, res) => {
+  try {
+    const prisoner = await Prisoner.findById(req.params.id);
+
+    if (prisoner) {
+      // Use deleteOne instead of remove
+      await Prisoner.deleteOne({ _id: req.params.id });
+      res.json({ message: "Prisoner removed" });
+    } else {
+      res.status(404).json({ message: "Prisoner not found" });
+    }
+  } catch (error) {
+    console.error("Error removing prisoner:", error);
+    res.status(500).json({ message: "Error removing prisoner" });
+  }
+};
+
 module.exports = {
   getPrisoners,
   getPrisonerById,
   createPrisoner,
   updatePrisoner,
+  deletePrisoner,
 };

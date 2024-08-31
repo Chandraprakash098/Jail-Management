@@ -14,14 +14,11 @@ const Dashboard = () => {
     if (user) {
       const fetchPrisoners = async () => {
         try {
-          const response = await axios.get(
-            `/api/prisoners`,
-            {
-              headers: {
-                Authorization: `Bearer ${user.token}`,
-              },
-            }
-          );
+          const response = await axios.get("/api/prisoners", {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          });
           setPrisoners(response.data);
           setFilteredPrisoners(response.data);
         } catch (error) {
@@ -43,6 +40,25 @@ const Dashboard = () => {
           prisoner.bookingId.includes(e.target.value)
         )
       );
+    }
+  };
+
+  const handleDelete = async (prisonerId) => {
+    try {
+      await axios.delete(`/api/prisoners/${prisonerId}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      // Remove the deleted prisoner from the state
+      setPrisoners(prisoners.filter((prisoner) => prisoner._id !== prisonerId));
+      setFilteredPrisoners(
+        filteredPrisoners.filter((prisoner) => prisoner._id !== prisonerId)
+      );
+      alert("Prisoner successfully deleted.");
+    } catch (error) {
+      console.error("Error deleting prisoner:", error);
+      alert("Error deleting prisoner. Please try again.");
     }
   };
 
@@ -69,11 +85,17 @@ const Dashboard = () => {
             <div key={prisoner._id} className="prisoner-item">
               <div className="prisoner-details">
                 <h3>{prisoner.name}</h3>
-                <p>Prisioner ID: {prisoner.bookingId}</p>
+                <p>Prisoner ID: {prisoner.bookingId}</p>
                 <p>Charges: {prisoner.charges}</p>
                 <p>Sentence Details: {prisoner.sentenceDetails}</p>
                 <p>Location: {prisoner.location}</p>
                 <p>Documents: {prisoner.documents.join(", ")}</p>
+                <button
+                  className="remove-button"
+                  onClick={() => handleDelete(prisoner._id)}
+                >
+                  Remove
+                </button>
               </div>
               {prisoner.image && (
                 <img

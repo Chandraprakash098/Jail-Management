@@ -14,6 +14,8 @@ import ViewVisitations from "./pages/ViewVisitations";
 import ViewIncidents from "./pages/ViewIncidents";
 
 
+
+
 const App = () => {
   return (
     <AuthProvider>

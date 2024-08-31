@@ -128,6 +128,14 @@
     border-radius: 10px;
 }
 
+.remove-button{
+    background-color: red;
+}
+
+.remove-button:hover{
+    background-color: darkred;
+}
+
 @media screen and (max-width: 768px) {
     .dashboard a {
         display: block;

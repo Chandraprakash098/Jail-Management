@@ -8,6 +8,7 @@ const prisonerRoutes = require("./routes/prisonerRoutes");
 const visitationRoutes = require("./routes/visitationRoutes");
 const incidentRoutes = require("./routes/incidentRoutes");
 
+
 dotenv.config();
 connectDB();
 
@@ -19,6 +20,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/prisoners", prisonerRoutes);
 app.use("/api/visitations", visitationRoutes);
 app.use("/api/incidents", incidentRoutes);
+
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '../client/build')));
